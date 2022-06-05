@@ -17,7 +17,7 @@ bot.command('ask', async (ctx) => {
     args.shift()
     let question = args.join(" ");
     if (question.length == 0) {
-        return ctx.telegram.sendAnimation(ctx.chat.id, 'https://c.tenor.com/b7QvDz0lDdUAAAAC/giopaddo-godo.gif', {reply_to_message_id: ctx.message.message_id})
+        return ctx.reply('Type something after /ask to ask me stuff.', {reply_to_message_id: ctx.message.message_id});
     }
     const completion = await openai.createCompletion("text-davinci-001", {
         prompt: question,
