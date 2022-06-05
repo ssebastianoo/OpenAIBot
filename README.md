@@ -1,6 +1,8 @@
 # OpenAI Bot
 A **Telegram** bot to interact with **[OpenAI](https://openai.com)**
 Use `/ask <question>` to ask a question to OpenAI and get a response.
+
+**[Use the bot](https://t.me/OpenAiTelegramBot)**
 ## hosting
 ```bin
 git clone https://github.com/ssebastianoo/OpenAIBot
