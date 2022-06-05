@@ -8,6 +8,10 @@ const openai = new OpenAIApi(new Configuration({
 }));
 const bot = new Telegraf(config.token)
 
+bot.start((ctx) => {
+    ctx.reply("Hello, this is a bot that uses OpenAI.\nAsk anything using /ask followed by your question.")
+})
+
 bot.command('ask', async (ctx) => {
     const args = ctx.update.message.text.split(" ");
     args.shift()
