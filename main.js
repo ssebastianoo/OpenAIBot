@@ -1,6 +1,7 @@
 const { Telegraf } = require("telegraf");
 const { Configuration, OpenAIApi } = require("openai");
 const config = require("./config");
+const fetch = require("node-fetch");
 
 const openai = new OpenAIApi(
   new Configuration({
@@ -41,6 +42,18 @@ bot.command("ask", async (ctx) => {
     reply_to_message_id: ctx.message.message_id,
   });
 });
+
+bot.command("ips", async (ctx) => {
+  if (!config.superusers.includes(ctx.message.from.id)) {
+    return ctx.reply("You are not a superuser.");
+  }
+  const res = await fetch(config.ipsUrl);
+  const data = (await res.json()).ips;
+  const ips = Object.keys(data).map(key => `${key}: ${data[key]}`).join("\n");
+  ctx.reply(ips, {
+    reply_to_message_id: ctx.message.message_id,
+  });
+})
 
 bot.launch();
 
